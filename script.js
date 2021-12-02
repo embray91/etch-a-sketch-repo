@@ -1,7 +1,6 @@
 const container = document.querySelector('#container');
 const button = document.getElementById('clear');
 
-
 function random(min,max) {
 let rnum = Math.floor(Math.random()*(max-min) + min);
   return rnum; 
@@ -10,9 +9,30 @@ let rnum = Math.floor(Math.random()*(max-min) + min);
 function randomColor() {
   return `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`;
 }
+
   const hvfn = (e) => {
 e.target.classList.add('hover');
+e.target.style.backgroundColor= `${randomColor()}`;
+if (e.target.style.opacity=="") {    
+e.target.style.opacity= "0.10";
+} else {
+let currOpac = parseFloat(e.target.style.opacity);
+let newOpac = (currOpac + 0.10).toString();
+e.target.style.opacity = newOpac;
+}
 };
+
+const select = (e) => {
+e.target.style.boxShadow="0 0 0 2px white";
+};
+
+const rmSelect = (e) => {
+e.target.style.boxShadow="none";
+};
+
+button.addEventListener('mouseover', select);
+
+button.addEventListener('mouseout', rmSelect);
 
 const fn = (e) => {
 for (let i=0; i<e; i++) {
